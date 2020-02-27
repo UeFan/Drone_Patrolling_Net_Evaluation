@@ -33,3 +33,17 @@ Dependencies:
     ```
     python evaluate_whichNet.py [Flags]
     ```
+3. Format of data set.
+    ```
+    validation_dir/
+        direction/
+            images/
+            direction_n_filted.txt
+        translation/
+            images/    
+            translation.txt
+        ...
+    test_dir/
+        testingset1/
+            images/
+    ```
