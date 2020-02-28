@@ -127,44 +127,40 @@ def resnet8_MDN(img_width, img_height, img_channels, output_dim):
                 kernel_initializer="he_normal",
                 kernel_regularizer=regularizers.l2(1e-4))(x4)
 
-    x3 = Conv2D(64, (1, 1), strides=[2,2], padding='same')(x3)
-    x5 = add([x3, x4])
-    x3_out = Flatten()(x5)
-    x3_out = Activation('relu')(x3_out)
-    x3_out = Dropout(0.5)(x3_out)
+    x4_ = Conv2D(64, (1, 1), strides=[2,2], padding='same')(x3)
+    x5 = add([x4_, x4])
+    x4_out = Flatten()(x5)
+    x4_out = Activation('relu')(x4_out)
     #
     #
     # # Third residual block
-    # x6 = keras.layers.normalization.BatchNormalization()(x5)
-    # x6 = Activation('relu')(x6)
-    # x6 = Conv2D(128, (3, 3), strides=[2,2], padding='same',
-    #             kernel_initializer="he_normal",
-    #             kernel_regularizer=regularizers.l2(1e-4))(x6)
-    #
-    # x6 = keras.layers.normalization.BatchNormalization()(x6)
-    # x6 = Activation('relu')(x6)
-    # x6 = Conv2D(128, (3, 3), padding='same',
-    #             kernel_initializer="he_normal",
-    #             kernel_regularizer=regularizers.l2(1e-4))(x6)
-    #
-    # x5 = Conv2D(128, (1, 1), strides=[2,2], padding='same')(x5)
-    # x7 = add([x5, x6])
-    #
-    # x = Flatten()(x7)
-    # x = Activation('relu')(x)
-    # x = Dropout(0.5)(x)
+    x6 = keras.layers.normalization.BatchNormalization()(x3)
+    x6 = Activation('relu')(x6)
+    x6 = Conv2D(64, (3, 3), strides=[2,2], padding='same',
+                kernel_initializer="he_normal",
+                kernel_regularizer=regularizers.l2(1e-4))(x6)
 
-    # Steering channel
-    #steer = Dense(output_dim)(x)
+    x6 = keras.layers.normalization.BatchNormalization()(x6)
+    x6 = Activation('relu')(x6)
+    x6 = Conv2D(64, (3, 3), padding='same',
+                kernel_initializer="he_normal",
+                kernel_regularizer=regularizers.l2(1e-4))(x6)
+
+    x6_ = Conv2D(64, (1, 1), strides=[2,2], padding='same')(x3)
+    x7 = add([x6_, x6])
+    x6_out = Flatten()(x7)
+    x6_out = Activation('relu')(x6_out)
+    #
+
 
     # Collision channel
-    x_coll = Dense(500, activation='relu')(x3_out)
-    x_coll = keras.layers.normalization.BatchNormalization()(x_coll)
-    x_coll = Dropout(0.5)(x_coll)
-    coll = Dense(output_dim, name='trans_output')(x_coll)
+    trans = Dense(500, activation='relu')(x6_out)
+    trans = keras.layers.normalization.BatchNormalization()(trans)
+    trans = Dropout(0.5)(trans)
+    trans = Dense(output_dim, name='trans_output')(trans)
     # coll = Activation('sigmoid')(coll)
 
-    dense1_1 = Dense(500, activation='relu')(x3_out)
+    dense1_1 = Dense(500, activation='relu')(x4_out)
     dense1_1 = keras.layers.normalization.BatchNormalization()(dense1_1)
     dense1_1 = Dropout(0.2)(dense1_1)
 
@@ -178,7 +174,7 @@ def resnet8_MDN(img_width, img_height, img_channels, output_dim):
 
     # outputs = Dense((c+1)*m)(dense2_1)
 
-    model = Model(inputs=[img_input], outputs=[outputs, coll])
+    model = Model(inputs=[img_input], outputs=[outputs, trans])
     # model = Model(inputs=[img_input], outputs=[outputs])
 
     # Define steering-collision model

@@ -64,7 +64,6 @@ def main():
     # model.compile(loss='mse', optimizer='sgd')
     model.compile(loss='mse', optimizer='adam')
 
-    print("json_model_path: {}".format(json_model_path))
     print("Loaded model from {}".format(weights_path))
 
     # print("[INFO]")

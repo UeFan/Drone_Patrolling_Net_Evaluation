@@ -14,6 +14,8 @@ gflags.DEFINE_integer('crop_img_width', 400, 'Cropped image widht')
 gflags.DEFINE_integer('crop_img_height', 100, 'Cropped image height')
 gflags.DEFINE_integer('crop_img_width_res18', 320, 'Cropped image widht of resnet')
 gflags.DEFINE_integer('crop_img_height_res18', 180, 'Cropped image height of resnet')
+gflags.DEFINE_integer('crop_img_width_dronet', 200, 'Cropped image widht of dronet')
+gflags.DEFINE_integer('crop_img_height_dronet', 200, 'Cropped image height of dronet')
 gflags.DEFINE_string('img_mode', "rgb", 'Load mode for images, either '
                      'rgb or grayscale')
 

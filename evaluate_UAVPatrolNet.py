@@ -3,8 +3,8 @@ import utils
 import cv2
 import numpy as np
 from common_flags import FLAGS
-
-import random
+from keras.utils import plot_model
+import cnn_models
 import math
 import tensorflow_probability as tfp
 tfd = tfp.distributions
@@ -48,13 +48,23 @@ def gaussian(sigs, mus, pis, x):
 
 def main():
     FLAGS(sys.argv)
-    json_model_path = '/model/UAVPatrolNet_model_struct.json'
+    json_model_path = 'model/UAVPatrolNet_model_struct.json'
     weights_path = FLAGS.model_dir
     # Set keras utils
+    # Input image dimensions
+    img_width, img_height = FLAGS.img_width, FLAGS.img_height
+
+    # Cropped image dimensions
+    crop_img_width, crop_img_height = FLAGS.crop_img_width, FLAGS.crop_img_height
+    target_size = (img_height, img_width)
+    crop_size = (crop_img_height, crop_img_width)
     K.set_learning_phase(TEST_PHASE)
     # Load json and create model
     model = utils.jsonToModel(json_model_path)
+    model = cnn_models.resnet8_MDN(crop_img_width, crop_img_height, 1,1)
     # Load weights
+    #utils.modelToJson(model,'a.json')
+    plot_model(model,'a.png')
     model.load_weights(weights_path,by_name=True)
     # model.compile(loss='mse', optimizer='sgd')
     model.compile(loss='mse', optimizer='adam')
@@ -88,15 +98,6 @@ def main():
             except OSError as e:
                 trans_label_exist = 0
                 print('No translation labels.')
-
-
-            # Input image dimensions
-            img_width, img_height = FLAGS.img_width, FLAGS.img_height
-
-            # Cropped image dimensions
-            crop_img_width, crop_img_height = FLAGS.crop_img_width, FLAGS.crop_img_height
-            target_size = (img_height,img_width)
-            crop_size = (crop_img_height,crop_img_width)
 
 
             dril2_set = []
