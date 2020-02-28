@@ -63,8 +63,6 @@ def main():
     model = utils.jsonToModel(json_model_path)
     model = cnn_models.resnet8_MDN(crop_img_width, crop_img_height, 1,1)
     # Load weights
-    #utils.modelToJson(model,'a.json')
-    plot_model(model,'a.png')
     model.load_weights(weights_path,by_name=True)
     # model.compile(loss='mse', optimizer='sgd')
     model.compile(loss='mse', optimizer='adam')
