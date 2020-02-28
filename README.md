@@ -1,5 +1,6 @@
 ## Learn by Observation: Imitation Learning for Drone Patrolling from Videos of A Human Navigator
-This is the code mentioned in the article that calculates the performance of three on our validation set.
+This is the code that we use to train and evaluate.
+The following figures are the the evaluation results. (first row: DroNet [1]; second row: TrailNet [2]; Third row: our UAVPatrolNet )
 
 ![image,img](images/20200104_171745.jpg)
 ## Get Start
@@ -47,3 +48,7 @@ Dependencies:
         testingset1/
             images/
     ```
+    
+    Reference:
+    [1]. A. Loquercio, A. I. Maqueda, C. R. Del-Blanco, and D. Scaramuzza, “Dronet: Learning to fly by driving,” IEEE Robotics and Automation Letters, vol. 3, no. 2, pp. 1088–1095, 2018.
+    [2]. N. Smolyanskiy, A. Kamenev, J. Smith, and S. Birchfield, “Toward low-flying autonomous mav trail navigation using deep neural networks for environmental awareness,” in IEEE/RSJ International Conference on Intelligent Robots and Systems, 2017, pp. 4241–4247.
