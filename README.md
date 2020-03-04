@@ -22,19 +22,19 @@ Dependencies:
 * Python gflags
 
 ### Usage
-1. Run the test code, there are `predict_UAVPatrolNet.py`,`predict_DroNet.py`and`predict_TrailNet.py`
+1. Run the test code, `predict_UAVPatrolNet.py`,`predict_DroNet.py`and`predict_TrailNet.py`
     
     ```
     python predict_whichNet.py [Flags]
     ```
     
     Check configuration parameters in `common_flags.py`  
-2. Run the accuracy calculation code, there are`evaluate_UAVPatrolNet.py`,`evaluate_DroNet.py`and`evaluate_TrailNet.py`
+2. Run the accuracy evaluation code, `evaluate_UAVPatrolNet.py`,`evaluate_DroNet.py`and`evaluate_TrailNet.py`
     
     ```
     python evaluate_whichNet.py [Flags]
     ```
-3. Format of data set.
+3. Format of our Patrol Dataset (download at yfan.site/UAVPatrol.html).
     ```
     validation_dir/
         direction/
@@ -48,6 +48,11 @@ Dependencies:
         testingset1/
             images/
     ```
+    
+    
+TODO:
+    Clean up and upload the training code.
+    
     
     Reference:
     [1]. A. Loquercio, A. I. Maqueda, C. R. Del-Blanco, and D. Scaramuzza, “Dronet: Learning to fly by driving,” IEEE Robotics and Automation Letters, vol. 3, no. 2, pp. 1088–1095, 2018.
