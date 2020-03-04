@@ -34,7 +34,7 @@ Dependencies:
     ```
     python evaluate_whichNet.py [Flags]
     ```
-3. Format of our Patrol Dataset (download at yfan.site/UAVPatrol.html).
+3. Format of our Patrol Dataset (download at yfan.site/UAVPatrol.html ).
     ```
     validation_dir/
         direction/
@@ -51,9 +51,12 @@ Dependencies:
     
     
 TODO:
+
     Clean up and upload the training code.
     
     
-    Reference:
+Reference:
+
     [1]. A. Loquercio, A. I. Maqueda, C. R. Del-Blanco, and D. Scaramuzza, “Dronet: Learning to fly by driving,” IEEE Robotics and Automation Letters, vol. 3, no. 2, pp. 1088–1095, 2018.
+    
     [2]. N. Smolyanskiy, A. Kamenev, J. Smith, and S. Birchfield, “Toward low-flying autonomous mav trail navigation using deep neural networks for environmental awareness,” in IEEE/RSJ International Conference on Intelligent Robots and Systems, 2017, pp. 4241–4247.
